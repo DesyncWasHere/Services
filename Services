@@ -1,0 +1,29 @@
+local Services = {"AdService", "AnalyticsService", "AssetService", "BadgeService", "ChangeHistoryService", "Chat",
+                  "CollectionService", "ContentProvider", "ContextActionService", "CookiesService", "CoreGui", "Debris",
+                  "DebuggerManager", "DraftsService", "DraggerService", "FilteredSelection", "FriendService",
+                  "GamePassService", "GamepadService", "Geometry", "GroupService", "GuiService",
+                  "HSRDataContentProvider", "HapticService", "HttpRbxApiService", "HttpService", "InsertService",
+                  "Instance", "JointsService", "LanguageService", "Lighting", "LocalizationService", "LogService",
+                  "MarketplaceService", "MemStorageService", "MeshContentProvider", "NotificationService",
+                  "PermissionsService", "PhysicsService", "Players", "PluginDebugService", "PluginGuiService",
+                  "PointsService", "PolicyService", "ProcessInstancePhysicsService", "ReplicatedFirst",
+                  "ReplicatedStorage", "RunService", "Script Context", "Selection", "ServerScriptService",
+                  "ServerStorage", "SolidModelContentProvider", "SoundService", "StarterGui", "StarterPack",
+                  "StarterPlayer", "Stats", "StudioService", "Teams", "TeleportService", "TestService", "TextService",
+                  "TouchInputService", "TweenService", "VRService", "VirtualInputManager", "Visit", "Workspace",
+                  "UserInputService"}
+
+local CalledServices = {}
+
+local module = {}
+
+function module:Init()
+    for _, Service in pairs(Services) do
+        pcall(function()
+            CalledServices[Service] = game:GetService(Service)
+        end)
+    end
+    return CalledServices
+end
+
+return module
